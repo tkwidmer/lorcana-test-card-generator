@@ -144,19 +144,11 @@ function CostCurveChart({ buckets, inks }) {
   )
 }
 
-function FullArtCard({ entry, onRemove }) {
+function FullArtCard({ entry }) {
   const { card, name, count } = entry
   const img = card.images?.full || card.images?.thumbnail
   return (
     <div className="relative">
-      <button
-        type="button"
-        onClick={() => onRemove(entry)}
-        className="absolute -top-2 -right-2 z-10 w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center hover:bg-gray-700"
-        title="Remove from selection"
-      >
-        ×
-      </button>
       {img ? (
         <img src={img} alt={name} className="w-full h-auto rounded-lg shadow-md" />
       ) : (
@@ -418,7 +410,7 @@ export function DecklistInspectorPage() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {selected.map(entry => (
-                  <FullArtCard key={entry.key} entry={entry} onRemove={toggleSelect} />
+                  <FullArtCard key={entry.key} entry={entry} />
                 ))}
               </div>
             )}
